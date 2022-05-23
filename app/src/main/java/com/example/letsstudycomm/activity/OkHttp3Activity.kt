@@ -22,13 +22,22 @@ class OkHttp3Activity : BaseActivity() {
         setContentView(binding.root)
 
         // viewModel initialize
-        okhttpViewModel.lvStartRun.observe(this) {
-            if (it) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    synchronousRun()
+        okhttpViewModel.apply{
+            lvStartSyncRun.observe(this@OkHttp3Activity) {
+                if (it) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        synchronousRun()
+                    }
                 }
-
             }
+            lvStartAsyncRun.observe(this@OkHttp3Activity) {
+                if (it) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        asynchronousRun()
+                    }
+                }
+            }
+
         }
 
         (binding as ActivityOkhttpBinding).apply {
@@ -78,10 +87,14 @@ class OkHttp3Activity : BaseActivity() {
                         println("$name: $value")
                     }
 
-                    println(response.body!!.string())
+                    okhttpViewModel.lvResponseText.postValue(response.body!!.string())
                 }
             }
         })
+
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(this@OkHttp3Activity, "통신 후, 비동기적으로 토스트", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun getLayoutId(): Int = R.layout.activity_okhttp

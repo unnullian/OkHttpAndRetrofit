@@ -13,13 +13,23 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/btnSync"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_txt_run"
-            android:onClick="@{()->viewModel.onClickRunButton()}"
+            android:text="@string/btn_txt_run_sync"
+            android:onClick="@{()->viewModel.onClickRunButtonSync()}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/btnAsync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_txt_run_async"
+            android:onClick="@{()->viewModel.onClickRunButtonAsync()}"
+            app:layout_constraintTop_toBottomOf="@id/btnSync"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:layout_width="match_parent"

@@ -6,10 +6,14 @@ import com.example.letsstudycomm.base.BaseViewModel
 
 class OkHttp3ViewModel : BaseViewModel() {
 
-    val lvStartRun: MutableLiveData<Boolean> = MutableLiveData()
+    val lvStartSyncRun: MutableLiveData<Boolean> = MutableLiveData()
+    val lvStartAsyncRun: MutableLiveData<Boolean> = MutableLiveData()
     val lvResponseText: MutableLiveData<String> = MutableLiveData()
 
-    fun onClickRunButton() {
-        lvStartRun.value = true
+    fun onClickRunButtonSync() {
+        lvStartSyncRun.value = true
+    }
+    fun onClickRunButtonAsync() {
+        lvStartAsyncRun.value = true
     }
 }
