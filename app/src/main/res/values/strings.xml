@@ -2,4 +2,7 @@
     <string name="app_name">LetsStudyComm</string>
     <string name="btn_msg_okhttp3_test">okHttp3 테스트하기</string>
     <string name="btn_msg_retrofit2_test">retrofit2 테스트하기</string>
+    <string name="app_bar_title_main">메인화면</string>
+    <string name="app_bar_title_okhttp3">OkHttp3 테스트</string>
+    <string name="app_bar_title_retrofit2">Retrofit2 테스트</string>
 </resources>

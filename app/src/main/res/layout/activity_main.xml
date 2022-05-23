@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/btnTestOkHttp3"
+    <data>
+
+        <import type="com.example.letsstudycomm.EnumActivityType" />
+
+        <variable
+            name="viewModel"
+            type="com.example.letsstudycomm.viewModel.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_msg_okhttp3_test"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnTestRetrofit2"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        android:layout_height="match_parent"
+        tools:context=".activity.MainActivity">
 
-    <Button
-        android:id="@+id/btnTestRetrofit2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_msg_retrofit2_test"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnTestOkHttp3"/>
+        <Button
+            android:id="@+id/btnTestOkHttp3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onClickButton(EnumActivityType.OkHttp3.kClass)}"
+            android:text="@string/btn_msg_okhttp3_test"
+            app:layout_constraintBottom_toTopOf="@id/btnTestRetrofit2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btnTestRetrofit2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.onClickButton(EnumActivityType.Retrofit2.kClass)}"
+            android:text="@string/btn_msg_retrofit2_test"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnTestOkHttp3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
