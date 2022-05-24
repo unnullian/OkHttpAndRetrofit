@@ -7,7 +7,4 @@ class MainViewModel : BaseViewModel() {
     fun onClickButton(kClass: KClass<*>) {
         kindOfEnumActivity.value = kClass
     }
-    fun setAppBarTitle(title: String) {
-        appbarTitle.value = title
-    }
 }

@@ -6,5 +6,6 @@ import kotlin.reflect.KClass
 
 open class BaseViewModel : ViewModel() {
     val kindOfEnumActivity: MutableLiveData<KClass<*>> = MutableLiveData()
-    val appbarTitle: MutableLiveData<String> = MutableLiveData()
+    val lvLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    val lvResponseText: MutableLiveData<String> = MutableLiveData()
 }
