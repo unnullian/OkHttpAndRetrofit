@@ -21,6 +21,10 @@ class OkHttp3Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        (binding as ActivityOkhttpBinding).apply {
+            this.viewModel = okhttpViewModel
+        }
+
         // viewModel initialize
         okhttpViewModel.apply{
             lvStartSyncRun.observe(this@OkHttp3Activity) {
@@ -39,13 +43,6 @@ class OkHttp3Activity : BaseActivity() {
             }
 
         }
-
-        (binding as ActivityOkhttpBinding).apply {
-            this.viewModel = okhttpViewModel
-            lifecycleOwner = this@OkHttp3Activity
-        }
-
-
     }
 
     private fun synchronousRun() {

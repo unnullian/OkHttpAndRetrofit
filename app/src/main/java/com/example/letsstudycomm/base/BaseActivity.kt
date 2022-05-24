@@ -15,6 +15,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding.lifecycleOwner = this
         supportActionBar?.title = getTitleName()
 
         setContentView(binding.root)
