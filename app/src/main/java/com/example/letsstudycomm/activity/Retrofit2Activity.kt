@@ -45,6 +45,7 @@ class Retrofit2Activity : BaseActivity() {
     }
 
     private fun runRetrofit() {
+        retrofitViewModel.lvLoading.value = true
         val retrofit = Retrofit.Builder()
             .baseUrl(Constants.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -58,16 +59,19 @@ class Retrofit2Activity : BaseActivity() {
             ) {
                 if (!response.isSuccessful) throw IOException()
                 retrofitViewModel.lvResponseText.value = response.body().toString()
+                retrofitViewModel.lvLoading.value = false
             }
 
             override fun onFailure(call: Call<List<MockApiModel>>, t: Throwable) {
                 Toast.makeText(applicationContext, "통신 실패", Toast.LENGTH_LONG).show()
+                retrofitViewModel.lvLoading.value = false
             }
-
         })
     }
 
     private fun runRetrofitWithOkhttp() {
+
+        retrofitViewModel.lvLoading.value = true
 
         // 기본적인 로깅 인터셉터
         val interceptor = HttpLoggingInterceptor()
@@ -98,11 +102,13 @@ class Retrofit2Activity : BaseActivity() {
                 response: Response<List<MockApiModel>>
             ) {
                 Toast.makeText(applicationContext, "통신 성공", Toast.LENGTH_LONG).show()
+                retrofitViewModel.lvLoading.value = false
 
             }
 
             override fun onFailure(call: Call<List<MockApiModel>>, t: Throwable) {
                 Toast.makeText(applicationContext, "통신 실패", Toast.LENGTH_LONG).show()
+                retrofitViewModel.lvLoading.value = false
             }
 
         })
