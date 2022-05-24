@@ -7,5 +7,7 @@
     <string name="app_bar_title_retrofit2">Retrofit2 테스트</string>
     <string name="btn_txt_run_sync">Synchronous RUN</string>
     <string name="btn_txt_run_async">Asynchronous RUN</string>
+    <string name="btn_txt_run_retrofit">RUN retrofit</string>
+    <string name="btn_txt_run_retrofit_okhttp">RUN retrofit with okhttp</string>
     <string name="result">[Result]</string>
 </resources>
