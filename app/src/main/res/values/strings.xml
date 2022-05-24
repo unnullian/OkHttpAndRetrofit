@@ -5,5 +5,7 @@
     <string name="app_bar_title_main">메인화면</string>
     <string name="app_bar_title_okhttp3">OkHttp3 테스트</string>
     <string name="app_bar_title_retrofit2">Retrofit2 테스트</string>
-    <string name="btn_txt_run">Synchronous RUN</string>
+    <string name="btn_txt_run_sync">Synchronous RUN</string>
+    <string name="btn_txt_run_async">Asynchronous RUN</string>
+    <string name="result">[Result]</string>
 </resources>

@@ -50,17 +50,15 @@ class OkHttp3Activity : BaseActivity() {
 
     private fun synchronousRun() {
         val request = Request.Builder()
-            .url("https://publicobject.com/helloworld.txt")
+            .url("https://627c63fdbf2deb7174d9d193.mockapi.io/api/v1/blogs")
             .build()
 
+        okhttpViewModel.lvLoading.postValue(true)
         OkHttpClient().newCall(request).execute().use { response ->
             if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-            for ((name, value) in response.headers) {
-                println("$name: $value")
-            }
-
             okhttpViewModel.lvResponseText.postValue(response.body!!.string())
+            okhttpViewModel.lvLoading.postValue(false)
         }
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -71,9 +69,10 @@ class OkHttp3Activity : BaseActivity() {
 
     private fun asynchronousRun() {
         val request = Request.Builder()
-            .url("http://publicobject.com/helloworld.txt")
+            .url("https://627c63fdbf2deb7174d9d193.mockapi.io/api/v1/blogs")
             .build()
 
+        okhttpViewModel.lvLoading.postValue(true)
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
@@ -83,11 +82,8 @@ class OkHttp3Activity : BaseActivity() {
                 response.use {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-                    for ((name, value) in response.headers) {
-                        println("$name: $value")
-                    }
-
                     okhttpViewModel.lvResponseText.postValue(response.body!!.string())
+                    okhttpViewModel.lvLoading.postValue(false)
                 }
             }
         })

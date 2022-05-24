@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.letsstudycomm.viewModel.OkHttp3ViewModel" />
@@ -16,26 +20,45 @@
             android:id="@+id/btnSync"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_txt_run_sync"
             android:onClick="@{()->viewModel.onClickRunButtonSync()}"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/btn_txt_run_sync"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnAsync"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_txt_run_async"
             android:onClick="@{()->viewModel.onClickRunButtonAsync()}"
-            app:layout_constraintTop_toBottomOf="@id/btnSync"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:text="@string/btn_txt_run_async"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSync" />
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/btnAsync" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{viewModel.lvResponseText}"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/txtResult" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.lvLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
